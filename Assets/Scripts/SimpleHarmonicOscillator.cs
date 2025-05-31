@@ -1,0 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SimpleHarmonicOscillator : MonoBehaviour
+{
+    public Transform pivot;
+    public float speed = 2.0f;
+
+    Quaternion startQt, endQt;
+
+    public GameObject lineRenderer;
+    LineRenderer[] lrs;
+
+    float startRot = 0.0f;   
+
+    void setLineRenderer(LineRenderer lr, Color color)
+    {
+        lr.startWidth = lr.endWidth = .1f;
+        lr.material.color = color;
+
+        lr.positionCount = 2;
+    }
+
+    Quaternion getRotateQuaternion(float angle)
+    {
+        Quaternion current = Quaternion.Euler(new Vector3(0, 0, 0));
+        Quaternion quaternion = Quaternion.Euler(new Vector3(angle, 0, 0));
+
+        return current * quaternion;
+    }
+
+    void Start()
+    {
+        float angle = Vector3.Angle(this.transform.position - pivot.position, Vector3.down);
+        float dir = (pivot.position.z < this.transform.position.z) ? 1.0f : -1.0f;
+
+        startQt = getRotateQuaternion(0);
+        endQt = getRotateQuaternion(2 * angle * dir);
+   
+        lrs = lineRenderer.GetComponentsInChildren<LineRenderer>();
+        setLineRenderer(lrs[0], Color.blue);
+        lrs[0].SetPosition(0, pivot.position);
+    }
+
+    void Update()
+    {
+        lrs[0].SetPosition(1, this.transform.position);
+    }
+
+    void FixedUpdate()
+    {
+        startRot += (Time.fixedDeltaTime * speed);
+        pivot.rotation 
+            = Quaternion.Lerp(startQt, endQt, (Mathf.Sin(startRot - Mathf.PI / 2) + 1.0f) / 2.0f);
+    }
+}
