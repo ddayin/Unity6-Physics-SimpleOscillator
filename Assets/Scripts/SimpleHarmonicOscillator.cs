@@ -5,7 +5,23 @@ using UnityEngine;
 public class SimpleHarmonicOscillator : MonoBehaviour
 {
     public Transform pivot;
+
+    /// <summary>
+    /// speed of the harmonic oscillator in degrees per second.
+    /// </summary>
     public float speed = 2.0f;
+
+    /// <summary>
+    /// Represents the angle in degrees.
+    /// </summary>
+    /// <remarks>The angle is stored as a floating-point value and can represent any valid degree
+    /// measurement.</remarks>
+    public float angle = 30.0f;
+
+    /// <summary>
+    /// Represents the length of a line in units.
+    /// </summary>
+    public float lineLength = 5.0f;
 
     Quaternion startQt, endQt;
 
@@ -32,7 +48,7 @@ public class SimpleHarmonicOscillator : MonoBehaviour
 
     void Start()
     {
-        float angle = Vector3.Angle(this.transform.position - pivot.position, Vector3.down);
+        //float angle = Vector3.Angle(this.transform.position - pivot.position, Vector3.down);
         float dir = (pivot.position.z < this.transform.position.z) ? 1.0f : -1.0f;
 
         startQt = getRotateQuaternion(0);
@@ -41,10 +57,12 @@ public class SimpleHarmonicOscillator : MonoBehaviour
         lrs = lineRenderer.GetComponentsInChildren<LineRenderer>();
         setLineRenderer(lrs[0], Color.blue);
         lrs[0].SetPosition(0, pivot.position);
+        
     }
 
     void Update()
     {
+        //lrs[0].SetPosition(1, this.transform.position + new Vector3(0f, 0f, lineLength));
         lrs[0].SetPosition(1, this.transform.position);
     }
 
