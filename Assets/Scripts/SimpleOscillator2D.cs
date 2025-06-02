@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// references : https://bloodstrawberry.tistory.com/1150
+
 public class SimpleOscillator2D : MonoBehaviour
 {
     public Transform pivot;
@@ -14,7 +16,7 @@ public class SimpleOscillator2D : MonoBehaviour
     /// </summary>
     /// <remarks>The angle is stored as a floating-point value and can represent any valid degree
     /// measurement.</remarks>
-    public float angle = 30.0f;
+    //public float angle = 30.0f;
 
     /// <summary>
     /// Represents the length of a line in units.
@@ -39,14 +41,14 @@ public class SimpleOscillator2D : MonoBehaviour
     Quaternion getRotateQuaternion(float angle)
     {
         Quaternion current = Quaternion.Euler(new Vector3(0, 0, 0));
-        Quaternion quaternion = Quaternion.Euler(new Vector3(angle, 0, 0));
+        Quaternion quaternion = Quaternion.Euler(new Vector3(0, 0, angle));
 
         return current * quaternion;
     }
 
     void Start()
     {
-        //float angle = Vector3.Angle(this.transform.position - pivot.position, Vector3.down);
+        float angle = Vector2.Angle(this.transform.position - pivot.position, Vector2.down);
         float dir = (pivot.position.z < this.transform.position.z) ? 1.0f : -1.0f;
 
         startQt = getRotateQuaternion(0);
