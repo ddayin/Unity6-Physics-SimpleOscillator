@@ -7,30 +7,13 @@ namespace Oscillator
     public class SimpleOscillator2D : MonoBehaviour
     {
         public Transform pivot;
-
-        /// <summary>
-        /// speed of the harmonic oscillator in degrees per second.
-        /// </summary>
-        public float speed = 2.0f;
-
-        /// <summary>
-        /// Represents the angle in degrees.
-        /// </summary>
-        /// <remarks>The angle is stored as a floating-point value and can represent any valid degree
-        /// measurement.</remarks>
-        public float angle = 30.0f;
-
-        /// <summary>
-        /// Represents the length of a line in units.
-        /// </summary>
-        public float lineLength = 5.0f;
-
-        Quaternion startQt, endQt;
-
+        private float speed = 2.0f;
+        private float angle = 30.0f;
+        private float lineLength = 5.0f;
+        private Quaternion startQt, endQt;
         public GameObject lineRenderer;
-        LineRenderer[] lrs;
-
-        float startRot = 0.0f;
+        private LineRenderer[] lrs;
+        private float startRot = 0.0f;
 
         void Start()
         {
@@ -59,6 +42,12 @@ namespace Oscillator
                 = Quaternion.Lerp(startQt, endQt, (Mathf.Sin(startRot - Mathf.PI / 2) + 1.0f) / 2.0f);
 
             Debug.Log("pivot.rotation: " + pivot.rotation.eulerAngles);
+        }
+
+        public void Set(float angle, float lineLength)
+        {
+            this.angle = angle;
+            this.lineLength = lineLength;
         }
 
         void SetInitialPosition()
