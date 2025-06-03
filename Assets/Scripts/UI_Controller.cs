@@ -5,29 +5,20 @@ namespace Oscillator
 {
     public class UI_Controller : MonoBehaviour
     {
-        public Button buttonStart;
-        public InputField inputAngle;
-        public InputField inputLength;
+        public TMPro.TextMeshProUGUI textAngleLength;
         public TMPro.TextMeshProUGUI textTime;
-
+        public int angle = 30;
+        public int length = 5;
         public SimpleOscillator2D oscillator2D;
 
         private void Awake()
         {
-            buttonStart.onClick.AddListener(OnButtonStartClicked);
+            textAngleLength.text = $"Angle: {angle}¡Æ Length: {length}m";
         }
 
         private void Start()
         {
-            int angle = System.Convert.ToInt32(inputAngle.text);
-            int length = System.Convert.ToInt32(inputLength.text);
-
             oscillator2D.Set((float)angle, (float)length);
-        }
-
-        void OnButtonStartClicked()
-        {
-            
         }
     }
 }

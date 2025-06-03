@@ -17,11 +17,11 @@ namespace Oscillator
         {
             SetInitialPosition();
 
-            angle = Vector2.Angle(this.transform.position - pivot.position, Vector2.down);
+            //angle = Vector2.Angle(this.transform.position - pivot.position, Vector2.down);
             float dir = (pivot.position.z < this.transform.position.z) ? 1.0f : -1.0f;
 
-            startQt = getRotateQuaternion(0);
-            endQt = getRotateQuaternion(2 * angle * dir);
+            startQt = getRotateQuaternion(angle * -dir);
+            endQt = getRotateQuaternion(angle * dir);
 
             lrs = lineRenderer.GetComponentsInChildren<LineRenderer>();
             setLineRenderer(lrs[0], Color.blue);
@@ -39,7 +39,7 @@ namespace Oscillator
             pivot.rotation
                 = Quaternion.Lerp(startQt, endQt, (Mathf.Sin(startRot - Mathf.PI / 2) + 1.0f) / 2.0f);
 
-            Debug.Log("pivot.rotation: " + pivot.rotation.eulerAngles);
+            //Debug.Log("pivot.rotation: " + pivot.rotation.eulerAngles);
         }
 
         public void Set(float angle, float lineLength)
