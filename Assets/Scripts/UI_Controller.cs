@@ -6,8 +6,8 @@ namespace Oscillator
     public class UI_Controller : MonoBehaviour
     {
         public Button buttonStart;
-        public TMPro.TextMeshProUGUI textAngle;
-        public TMPro.TextMeshProUGUI textLength;
+        public InputField inputAngle;
+        public InputField inputLength;
         public TMPro.TextMeshProUGUI textTime;
 
         public SimpleOscillator2D oscillator2D;
@@ -19,8 +19,8 @@ namespace Oscillator
 
         private void Start()
         {
-            int angle = System.Convert.ToInt32(textAngle.text);
-            int length = System.Convert.ToInt32(textLength.text);
+            int angle = System.Convert.ToInt32(inputAngle.text);
+            int length = System.Convert.ToInt32(inputLength.text);
 
             oscillator2D.Set((float)angle, (float)length);
         }
