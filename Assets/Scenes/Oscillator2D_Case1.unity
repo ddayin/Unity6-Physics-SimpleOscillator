@@ -326,7 +326,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textAngleLength: {fileID: 1130334036}
-  textTime: {fileID: 0}
   angle: 30
   length: 5
   oscillator2D: {fileID: 1452479155}

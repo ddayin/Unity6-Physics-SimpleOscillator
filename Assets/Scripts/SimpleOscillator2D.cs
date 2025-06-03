@@ -17,11 +17,10 @@ namespace Oscillator
         {
             SetInitialPosition();
 
-            //angle = Vector2.Angle(this.transform.position - pivot.position, Vector2.down);
-            float dir = (pivot.position.z < this.transform.position.z) ? 1.0f : -1.0f;
+            float direction = (pivot.position.z < this.transform.position.z) ? 1.0f : -1.0f;
 
-            startQt = getRotateQuaternion(angle * -dir);
-            endQt = getRotateQuaternion(angle * dir);
+            startQt = getRotateQuaternion(angle * -direction);
+            endQt = getRotateQuaternion(angle * direction);
 
             lrs = lineRenderer.GetComponentsInChildren<LineRenderer>();
             setLineRenderer(lrs[0], Color.blue);
@@ -57,7 +56,7 @@ namespace Oscillator
 
         void setLineRenderer(LineRenderer lr, Color color)
         {
-            lr.startWidth = lr.endWidth = .1f;
+            lr.startWidth = lr.endWidth = 0.1f;
             lr.material.color = color;
 
             lr.positionCount = 2;
