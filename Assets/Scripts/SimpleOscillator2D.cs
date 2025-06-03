@@ -1,7 +1,5 @@
 using UnityEngine;
 
-// references : https://bloodstrawberry.tistory.com/1150
-
 namespace Oscillator
 {
     public class SimpleOscillator2D : MonoBehaviour
